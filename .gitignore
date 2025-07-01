@@ -1,4 +1,7 @@
 env
+.env
+
+.ipynb_checkpoints/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
