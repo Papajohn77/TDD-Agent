@@ -1,0 +1,19 @@
+name: tdd-agent
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    - numpy
+    - pandas
+    - matplotlib
+    - jupyterlab
+    - python-dotenv
+    - requests
+    - beautifulsoup4
+    - pydantic
+    - openai
+    - anthropic
+    - google-genai
