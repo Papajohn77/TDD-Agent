@@ -10,6 +10,7 @@ import gr.aueb.tddagent.api.schemas.response.OrderDTO;
 import gr.aueb.tddagent.api.schemas.response.OrdersListDTO;
 import gr.aueb.tddagent.domain.Order;
 import gr.aueb.tddagent.domain.OrderStatus;
+import gr.aueb.tddagent.domain.User;
 import gr.aueb.tddagent.exception.custom.NotFoundException;
 import gr.aueb.tddagent.persistence.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -23,10 +24,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public OrdersListDTO getOrders(OrderStatus status) {
+    public OrdersListDTO getOrders(User user, OrderStatus status) {
         List<Order> orders = (status != null)
-            ? orderRepository.findByStatusOrderByCreatedAtDesc(status)
-            : orderRepository.findAll();
+            ? orderRepository.findByUserAndStatusOrderByCreatedAtDesc(user, status)
+            : orderRepository.findByUserOrderByCreatedAtDesc(user);
 
         List<OrderDTO> dtoList = orders.stream()
             .map(this::mapToDTO)
